@@ -64,7 +64,7 @@ function App() {
     try {
       setError("");
       const taskList = await getTasks();
-      setTasks(taskList);
+      setTasks(Array.isArray(taskList) ? taskList : []);
     } catch (_err) {
       setError("Failed to load tasks.");
     } finally {
@@ -98,6 +98,9 @@ function App() {
       setBusy(true);
       setError("");
       const newTask = await createTask(title);
+      if (!newTask?.id) {
+        throw new Error("Invalid task payload.");
+      }
       setTasks((prevTasks) => [newTask, ...prevTasks]);
       return true;
     } catch (_err) {
@@ -113,6 +116,9 @@ function App() {
       setBusy(true);
       setError("");
       const updatedTask = await updateTaskStatus(task.id, !task.completed);
+      if (!updatedTask?.id) {
+        throw new Error("Invalid task payload.");
+      }
       setTasks((prevTasks) =>
         prevTasks.map((item) => (item.id === updatedTask.id ? updatedTask : item))
       );

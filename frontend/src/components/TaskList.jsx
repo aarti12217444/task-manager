@@ -4,9 +4,10 @@ import gsap from "gsap";
 
 function TaskList({ tasks, onToggleTask, onDeleteTask, isBusy }) {
   const listRef = useRef(null);
+  const safeTasks = Array.isArray(tasks) ? tasks.filter((task) => task?.id) : [];
 
   useLayoutEffect(() => {
-    if (!listRef.current || tasks.length === 0) {
+    if (!listRef.current || safeTasks.length === 0) {
       return;
     }
 
@@ -23,15 +24,15 @@ function TaskList({ tasks, onToggleTask, onDeleteTask, isBusy }) {
         overwrite: "auto",
       }
     );
-  }, [tasks]);
+  }, [safeTasks]);
 
-  if (tasks.length === 0) {
+  if (safeTasks.length === 0) {
     return <p className="empty-state">No tasks yet.</p>;
   }
 
   return (
     <ul className="task-list" ref={listRef}>
-      {tasks.map((task) => (
+      {safeTasks.map((task) => (
         <TaskItem
           key={task.id}
           task={task}
