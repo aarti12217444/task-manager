@@ -33,6 +33,9 @@ assignment/
 - npm
 - MongoDB running locally or a MongoDB Atlas URI
 
+## Deployed Project
+https://task-manager-frontend-bv71.onrender.com
+
 ## Environment Variables
 
 Create `backend/.env`:
