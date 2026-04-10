@@ -1,6 +1,15 @@
 import axios from "axios";
 
-const API_BASE = "/tasks";
+const normalizeBaseUrl = (url) => {
+  if (!url) {
+    return "";
+  }
+
+  return url.endsWith("/") ? url.slice(0, -1) : url;
+};
+
+const API_ORIGIN = normalizeBaseUrl(import.meta.env.VITE_API_BASE_URL);
+const API_BASE = `${API_ORIGIN}/tasks`;
 
 export const getTasks = async () => {
   const response = await axios.get(API_BASE);

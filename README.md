@@ -40,9 +40,18 @@ Create `backend/.env`:
 ```env
 PORT=5000
 MONGODB_URI=mongodb://127.0.0.1:27017/task_manager
+FRONTEND_URL=http://localhost:5173
 ```
 
-`backend/.env.example` is included as a reference.
+Create `frontend/.env`:
+
+```env
+VITE_API_BASE_URL=https://task-manager-backend-7g67.onrender.com
+```
+
+For deployed setup, set `VITE_API_BASE_URL` to your deployed backend URL (example: `https://your-api.onrender.com`) and set backend `FRONTEND_URL` to your deployed frontend URL.
+
+`.env.example` files are included in both `backend` and `frontend`.
 
 ## Setup & Run
 
@@ -63,7 +72,7 @@ cd backend
 npm run dev
 ```
 
-Backend runs on `http://localhost:5000`.
+Backend runs on `https://task-manager-backend-7g67.onrender.com`.
 
 ### 3) Start frontend
 
@@ -74,7 +83,7 @@ cd frontend
 npm run dev
 ```
 
-Frontend runs on Vite default port (usually `http://localhost:5173`) and proxies API requests to the backend.
+Frontend runs on Vite default port (usually `http://localhost:5173`).
 
 ## API Endpoints
 

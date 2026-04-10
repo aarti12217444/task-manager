@@ -6,11 +6,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/tasks": {
-        target: "http://localhost:5000",
+        target: "https://task-manager-backend-7g67.onrender.com",
         changeOrigin: true,
       },
       "/health": {
-        target: "http://localhost:5000",
+        target: "https://task-manager-backend-7g67.onrender.com",
         changeOrigin: true,
       },
     },
